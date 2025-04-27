@@ -5,7 +5,7 @@ const resultDiv = document.getElementById('result');
 // Define password validation rules
 const passwordRules = {
   minLength: 8,
-  maxLength: 128,
+  maxLength: 20,
   requireUppercase: true,
   requireNumbers: true,
   requireSpecialChars: true
