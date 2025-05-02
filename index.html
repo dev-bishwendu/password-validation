@@ -9,12 +9,12 @@
     <h1 style="text-align: center;">Password Documentation</h1>
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px;">
         <div>
-            <input type="text" placeholder="Enter your name" style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="text" id="name" placeholder="Enter your name" style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
         </div>
         <div>
-            <input type="password" id="password" placeholder="Confirm your password" style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"> <br> <br>
+            <input type="password" id="password" placeholder="Confirm your password" style="width: 300px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required> <br> <br>
             <button id="submit">Submit</button>    
-        </div> <br> <br>
+        </div> <br>
         <div id="result">
             <!-- The result will be displayed here dynamiclly -->
         </div>

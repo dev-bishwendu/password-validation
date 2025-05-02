@@ -1,57 +1,32 @@
-const passwordInput = document.getElementById('password');
-const submitButton = document.getElementById('submit');
-const resultDiv = document.getElementById('result');
+const nameInput = document.getElementById("name");
+const passwordInput = document.getElementById("password");
+const result = document.getElementById("result");
+const submit = document.getElementById("submit");
 
-// Define password validation rules
-const passwordRules = {
-  minLength: 8,
-  maxLength: 20,
-  requireUppercase: true,
-  requireNumbers: true,
-  requireSpecialChars: true
-};
-
-// Function to validate password
-function validatePassword(password) {
-  const errors = [];
-
-  if (password.length < passwordRules.minLength) {
-    errors.push(`Password must be at least ${passwordRules.minLength} characters long`);
-  }
-
-  if (password.length > passwordRules.maxLength) {
-    errors.push(`Password must be no more than ${passwordRules.maxLength} characters long`);
-  }
-
-  if (passwordRules.requireUppercase && !/[A-Z]/.test(password)) {
-    errors.push('Password must contain at least one uppercase letter');
-  }
-
-  if (passwordRules.requireNumbers && !/\d/.test(password)) {
-    errors.push('Password must contain at least one number');
-  }
-
-  if (passwordRules.requireSpecialChars && !/[^a-zA-Z0-9]/.test(password)) {
-    errors.push('Password must contain at least one special character');
-  }
-
-  return errors;
-}
-
-// Add event listener to submit button
-submitButton.addEventListener('click', (e) => {
+submit.addEventListener("click", (e) => {
   e.preventDefault();
-
+  const name = nameInput.value.trim();
   const password = passwordInput.value;
-  const errors = validatePassword(password);
 
-  if (errors.length > 0) {
-    resultDiv.innerHTML = `
-      <ul>
-        ${errors.map((error) => `<li>${error}</li>`).join('')}
-      </ul>
-    `;
+  if (!name) {
+    showMessage("Invalid Name", "red");
+  } else if (isValidPassword(password)) {
+    showMessage("Logged In Successfully", "green");
+    nameInput.value = "";
+    passwordInput.value = "";
   } else {
-    resultDiv.innerHTML = 'Password is valid!';
+    showMessage("Invalid Password", "red");
   }
 });
+
+const isValidPassword = (p) =>
+  p.length >= 8 &&
+  p.length <= 20 &&
+  /[A-Z]/.test(p) &&
+  /[a-z]/.test(p) &&
+  /[0-9]/.test(p) &&
+  /[!@#$%^&*]/.test(p);
+
+const showMessage = (msg, color) => {
+  result.innerHTML = `<p style="background-color: ${color}; color: #fff; padding: 10px;">${msg}</p>`;
+};
